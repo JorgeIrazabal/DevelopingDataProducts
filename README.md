@@ -1,4 +1,4 @@
-# DevelopingDataProducts
+# Developing Data Products
 Coursera Developing Data Products Shiny Application
 
 ## Your Shiny Application
