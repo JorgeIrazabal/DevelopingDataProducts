@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Influence of seat belt use in road casualties</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Influence of seat belt use in road casualties">
+  <meta name="author" content="Jorge Irazabal">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Influence of seat belt use in road casualties</h1>
+    <h2>Developing Data Products</h2>
+    <p>Jorge Irazabal<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <article data-timings="">
+    <style type="text/css">
+ 
+body, td {
+   font-size: 8px;
+}
+code.r{
+  font-size: 8px;
+}
+pre {
+  font-size: 10px;
+}
+img {
+    max-height: 400px;
+}
+</style>
+
+<!-- Center image on slide -->
+
+<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+
+<script type='text/javascript'>
+$(function() {
+    $("p:has(img)").addClass('centered');
+});
+</script>
+
+<h2>Introduction</h2>
+
+<ul>
+<li><p>This is a study on the influence of the compulsory use of the seat belt.</p>
+
+<ul>
+<li>The data is monthly totals of people killed or injured 1969-1984 in Great Britain.</li>
+<li>Compulsory wearing of seat belts was introduced on 31/01/1983.</li>
+</ul></li>
+<li><p>The shinny application have two tabs:</p>
+
+<ul>
+<li>A chart with the consequences of accidents on the road, shown by type of passenger or driver, allowing to study the influence of the price of oil and / or kilometers traveled</li>
+<li>A comparative with real data and a prediction that would have occurred if the used of seat belt is not mandatory</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Shiny Application</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>In the shiny application can select the type of road casualties to study</p></li>
+<li><p>Data can be filtered by kilometers traveled and/or the price of petrol to study its influence</p></li>
+<li><p>A black line separates the date from which the seat belt is mandatory.</p></li>
+</ul>
+
+<p><img src="images/ShinyApp.jpg" alt=""></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Comparative</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(datasets);library(ggplot2)
+require(stats); require(graphics)
+        # Obtain Data previous to 1983
+        prevData &lt;- window(UKDriverDeaths, end = 1982+11/12)
+        # Predict data for then 24 next months
+        fit &lt;- arima(prevData, c(1, 0, 0), seasonal = list(order = c(1, 0, 0)))
+        z &lt;- predict(fit, n.ahead = 24)
+        # Add predict data to plot
+        ts.plot(UKDriverDeaths, z$pred,col = c(&quot;black&quot;, &quot;red&quot;),
+                main=&quot;Comparation of real UK Driver Deaths and a prediction without compulsory wearing of seat belts&quot;, 
+            xlab=&quot;Year&quot;, ylab=&quot;UK Driver Deaths by Month&quot;)
+</code></pre>
+
+<p><img src="assets/fig/unnamed-chunk-1-1.png" alt="plot of chunk unnamed-chunk-1"> </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>Conclusions</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><p>The number of deaths and injuries decreases with the compulsory use of the seat belt</p>
+
+<ul>
+<li>In the case of drivers killed , the first year down by almost 300 people</li>
+<li>The obligation to use a seat belt only affects the front seats , making accidents in the rear seats is the same, or higher</li>
+</ul></li>
+<li><p>The price of petrol is not significant, it varies from month to month for socioeconomic reasons</p></li>
+<li><p>The kilometers are not significant, since cars are becoming more powerful , there are more highways ...</p>
+
+<ul>
+<li>For further travels 1.800 km compared to 1.982 and 1.983 there is a decrease , but in 1.984 more than 1.982 data</li>
+</ul></li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title=''>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Shiny Application'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Comparative'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Conclusions'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
