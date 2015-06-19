@@ -7,7 +7,13 @@ shinyUI(
                       hr(),
                       h3("Instructions"),
                       p("In the Exploratory Analysis tab can you see the number of occupants killed or seriously injured as if it is the driver, passenger types..., allowing to study the influence of the price of petrol or the traveled kilometers."),
+                      p(" * Select the group of people to study their casualties"),
+                      p(" * In you want study road Kilometers influence, check it and select a range of kilometres"),
+                      p(" * In you want study petro price influence, check it and select a range of petrol price"),
+                      p(" * Automatically the data group by year is showed"),
+                      p(""),
                       p("Comparation tab show the data of drivers killed o seriously injured, and a prediction and a prediction of what would have happened without the mandatory seat belt (be patient, it's slow)"),
+                      p(""),
                       p("Data tab contain a reference to the data used")
              ),
              tabPanel("Exploratory Analysis",
